@@ -135,7 +135,7 @@ Make sure you have the following installed on your machine:
 
 ```bash
 git clone https://github.com/rr3s1/BookWise-Uni-Library
-cd BookWise-Uni-Library
+cd bookwise-uni-library
 ```
 
 **Installation**
