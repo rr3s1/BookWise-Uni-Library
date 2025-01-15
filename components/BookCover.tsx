@@ -1,6 +1,7 @@
 import React from 'react'
 import { cn } from "@/lib/utils";
 import Image from "next/image"; 
+import BookCoverSvg from './BookCoverSvg';
 
 type BookCoverVariant = "extraSmall" | "small" | "medium" | "regular" | "wide";
 
@@ -20,7 +21,12 @@ const variantStyles: Record<BookCoverVariant, string> = {
     coverImage: string;
   }
 
-const BookCover = ({className, variant = "regular", coverColor ="#012B48", coverImage="https://placehold.co/400x600.png",}: Props) => {
+const BookCover = ({
+    className,
+    variant = "regular",
+    coverColor ="#012B48",
+    coverImage="https://placehold.co/400x600.png",
+    }: Props) => {
   return (
     <div
       className={cn(
@@ -29,7 +35,8 @@ const BookCover = ({className, variant = "regular", coverColor ="#012B48", cover
         className,
       )}
     >
-      BookSideSvg
+            <BookCoverSvg coverColor={coverColor} />
+
 
       <div
         className="absolute z-10"
