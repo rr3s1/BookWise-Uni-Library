@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import { signIn } from "@/auth";
+import { hash } from "bcryptjs";
 
 
 export const signInWithCredentials = async (

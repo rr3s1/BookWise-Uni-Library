@@ -82,7 +82,7 @@ const ImageUpload = ({onFileChange}: {
             folder="/ids" // Specify upload folder if desired
             // Consider adding inputProps for accessibility if needed indirectly
         />
-        {/* Button to trigger the hidden IKUpload */}
+    
         <button
             type="button" // Ensure it's not treated as a submit button if inside a form
             className="upload-btn" // Apply custom styling
@@ -95,7 +95,7 @@ const ImageUpload = ({onFileChange}: {
             }}
         >
           <Image
-              src="../public/icons/upload.svg" // Use a more descriptive path if possible
+              src="src=/public/icons/upload.svg" // Use a more descriptive path if possible
               alt="upload-icon"
               width={20}
               height={20}
@@ -126,6 +126,6 @@ const ImageUpload = ({onFileChange}: {
             )}
       </IKContext>
   );
-}; // Closing brace for ImageUpload component was missing
+}; 
 
-export default ImageUpload; // Export the component
+export default ImageUpload; 
