@@ -25,6 +25,8 @@ import Link from "next/link";
 
   import ImageUpload from './ImageUpload'
   import {FIELD_TYPES, FIELD_NAMES}  from "@/constants"
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
   interface Props<T extends FieldValues> {
     schema: ZodType<T>;
@@ -39,7 +41,7 @@ const AuthForm = <T extends FieldValues>
       defaultValues,
        onSubmit,
     }: Props<T>) => {
-
+      const router = useRouter();
         const isSignIn = type === "SIGN_IN";
 
      const form: UseFormReturn<T> = useForm({
@@ -48,6 +50,23 @@ const AuthForm = <T extends FieldValues>
       });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
+    const result = await onSubmit(data);
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: isSignIn
+          ? "You have successfully signed in."
+          : "You have successfully signed up.",
+      });
+
+      router.push("/");
+    } else {
+      toast({
+        title: `Error ${isSignIn ? "signing in" : "signing up"}`,
+        description: result.error ?? "An error occurred.",
+        variant: "destructive",
+      });
+    }
   }
   return (
     <div className="flex flex-col gap-4">
