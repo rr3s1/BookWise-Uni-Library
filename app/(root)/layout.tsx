@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import {users} from "@/database/schema";
 import {db} from "@/database/drizzle";
 import {eq} from "drizzle-orm";
+import {after} from "@/lib/server";
 
 
 
@@ -14,8 +15,9 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
   if (!session) redirect("/sign-in");
 
-  // Update user's last activity date
-  if (session?.user?.id) {
+  after(async() => {
+    if (!session?.user?.id) return;
+
     try {
       const user = await db
           .select()
@@ -33,7 +35,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       console.error("Error updating last activity date:", error);
       // Continue with rendering even if updating activity date fails
     }
-  }
+  });
     return (
       <main className="root-container">
         <div className="mx-auto max-w-7xl">
