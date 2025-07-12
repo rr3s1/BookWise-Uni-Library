@@ -199,7 +199,7 @@ export const navigationLinks = [
       createdAt: new Date(),
     },
   ];
-  
+
   export const sorts = [
     {
       value: "oldest",
